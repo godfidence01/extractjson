@@ -21,7 +21,8 @@ if [ ! -f "$json_file" ]; then
 fi
 
 # Use jq to extract URLs from the JSON file
-domain=$(jq -r '.. | .domain? // empty' "$json_file")
+domain=$(jq -r '.. | .domain? // empty' "$json_file" | grep -v '^$')
 
-# Print the extracted URLs
+# removing the blank spaces or new line
+# Print the extract
 echo "$domain"
